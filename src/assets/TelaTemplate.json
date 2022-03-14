@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "templateName": "基础模版",
+    "createTime": "2021-03-10 14:51:30",
+    "templateList": [
+      {
+        "timeStamp": 1646724821450,
+        "type": "input-controller",
+        "label": "姓名",
+        "span": 12,
+        "required": true,
+        "props": "name"
+      },
+      {
+        "timeStamp": 1646724823233,
+        "type": "input-controller",
+        "label": "性别",
+        "span": 12,
+        "required": true,
+        "props": "sex"
+      }
+    ]
+  }
+]

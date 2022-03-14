@@ -1,0 +1,29 @@
+{
+  "name": "flessibile",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "nodemon ./server/index.js",
+    "connector": "concurrently \"npm run server\" \"npm run dev\""
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "element-plus": "^2.0.2",
+    "vue": "^3.2.25",
+    "vue-draggable-next": "^2.1.1",
+    "vue-router": "^4.0.12",
+    "pinia": "^2.0.11",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@element-plus/icons-vue": "^0.2.7",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "axios": "^0.26.0",
+    "koa": "^2.13.4",
+    "koa-router": "^10.1.1",
+    "vite": "^2.8.0"
+  }
+}

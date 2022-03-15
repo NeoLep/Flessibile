@@ -3,7 +3,7 @@ import { baseURL, LocalApiList } from "../../api/local.api";
 
 export function saveTemplateToLocal(params) {
   const request = {
-    url: baseURL + LocalApiList.Test.url,
+    url: baseURL + LocalApiList.saveToLocal.url,
     method: LocalApiList.saveToLocal.method,
     params
   };

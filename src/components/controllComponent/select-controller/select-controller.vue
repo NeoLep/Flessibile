@@ -1,7 +1,7 @@
 <template>
   <controllerContainer
     :controller="props.controller"
-    :component="props.preview || props.render"
+    :component="props.preview || props.render || props.demonstrate"
     :element="props.element || {}"
   >
     <template #controller>
@@ -14,7 +14,7 @@
         class="select"
         v-model="getValue"
         placeholder="请选择内容"
-        :disabled="props.preview ? true : false"
+        :disabled="props.disabled || props.demonstrate || props.preview"
         @change="updateValue('input', getValue)"
         clearable
       >

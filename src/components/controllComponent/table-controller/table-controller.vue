@@ -1,7 +1,7 @@
 <template>
   <controllerContainer
     :controller="props.controller"
-    :component="props.preview || props.render"
+    :component="props.preview || props.render || props.demonstrate"
     :element="props.element || {}"
   >
     <template #controller>

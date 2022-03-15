@@ -17,3 +17,20 @@ export function getTelaListService(params) {
       });
   });
 }
+
+export function deleteTelaListService(params) {
+  const request = {
+    url: baseURL + LocalApiList.deleteTela.url,
+    method: LocalApiList.deleteTela.method,
+    params
+  };
+  return new Promise((resolve, reject) => {
+    $request(request)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}

@@ -10,16 +10,21 @@
       <template #operator="scope">
         <el-button
           type="text"
-          @click="detailEvents.viewDetail(scope.row, 'preview')"
+          @click="detailEvents.detail(scope.row, 'preview')"
           >查看</el-button
         >
         <el-button
-          @click="detailEvents.viewDetail(scope.row, 'edit')"
+          @click="detailEvents.detail(scope.row, 'edit')"
           style="color: #7ebf50"
           type="text"
           >编辑</el-button
         >
-        <el-button style="color: red" type="text">删除</el-button>
+        <el-button
+          @click="detailEvents.detail(scope.row, 'delete')"
+          style="color: red"
+          type="text"
+          >删除</el-button
+        >
       </template>
     </tableComponent>
   </div>
@@ -32,7 +37,7 @@ import tableComponent from "../../components/table-component/table-component.vue
 import { getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
 
-import { getTelaListService } from "./telaList.service";
+import { getTelaListService, deleteTelaListService } from "./telaList.service";
 import { searchRenders, tableOptions } from "./tela-list-page";
 import TelaTemplateJSON from "../../assets/TelaTemplate.json";
 
@@ -51,7 +56,7 @@ const requestEvents = {
 // 查看详情事件
 const detailEvents = {
   // 编辑还是阅览
-  viewDetail(detail, type) {
+  async detail(detail, type) {
     proxy.$store.updateState("viewTelaDetail", detail);
     if (type === "preview") router.push("telarender");
     else if (type === "edit")
@@ -61,6 +66,13 @@ const detailEvents = {
           edit: true
         }
       });
+    else if (type === "delete") {
+      const params = {
+        id: detail.id
+      };
+      let result = await deleteTelaListService(params);
+      if (result) console.log(result);
+    }
   }
 };
 

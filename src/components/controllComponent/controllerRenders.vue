@@ -3,7 +3,7 @@
     <!-- {{ props }} -->
     <!-- 预览模式/渲染模式 -->
     <el-form
-      v-if="props.type === 'preview' || props.type === 'render'"
+      ref="controllerRenderFormRef"
       :model="props.forms"
       :show-message="props.type === 'preview' ? false : true"
       :label-position="props.labelPosition || 'top'"
@@ -35,8 +35,10 @@
             :config="props.forms['config'] || {}"
             :is="element.type"
             :element="element"
+            :disabled="props.disabled || false"
             :preview="props.type === 'preview'"
             :render="props.type === 'render'"
+            :demonstrate="props.type === 'demonstrate'"
           />
           <div class="operator" v-if="focusIndex === index">
             <el-button
@@ -71,6 +73,35 @@ import { Delete, CopyDocument } from "@element-plus/icons-vue";
 const getComponentList = renderControllers();
 const getCustomComponentList = renderCustomControllers();
 
+// 获取的props
+let getProps;
+
+// Form 表单相关事件
+const controllerRenderFormRef = ref(null);
+const formEvents = {
+  validateForm() {
+    return new Promise(resolve => {
+      controllerRenderFormRef.value.validate((valid, fields) => {
+        if (valid) {
+          resolve({
+            status: "valid",
+            data: getProps.forms
+          });
+        } else {
+          resolve({
+            status: "invalid",
+            data: fields
+          });
+        }
+      });
+    });
+  },
+  resetForm() {
+    if (!controllerRenderFormRef.value) return;
+    controllerRenderFormRef.value.resetFields();
+  }
+};
+
 export default {
   components: {
     ...getComponentList,
@@ -78,6 +109,7 @@ export default {
     draggable: VueDraggableNext
   },
   props: {
+    disabled: Boolean,
     expendPadding: {
       type: Boolean,
       default: true
@@ -108,7 +140,7 @@ export default {
   ],
 
   setup(props, { emit }) {
-    console.log(props);
+    getProps = props;
 
     // console.log(getComponentList);
     const focusIndex = ref(-1);
@@ -146,11 +178,6 @@ export default {
       emit("clearCheckedElement", null);
     };
 
-    // 更新propsValue 事件
-    const upd = value => {
-      console.log("upd", value);
-    };
-
     // 设置 required
     const rules = reactive({
       name: [
@@ -161,10 +188,6 @@ export default {
         }
       ]
     });
-
-    const validiateForm = () => {
-      console.log("ValidateForm");
-    };
 
     return {
       props,
@@ -178,9 +201,9 @@ export default {
       CopyDocument,
       cloneElement,
       clearChecked,
-      upd,
-      validiateForm,
-      rules
+      rules,
+      controllerRenderFormRef,
+      formEvents
     };
   }
 };

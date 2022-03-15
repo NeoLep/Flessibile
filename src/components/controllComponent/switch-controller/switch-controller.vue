@@ -1,7 +1,7 @@
 <template>
   <controllerContainer
     :controller="props.controller"
-    :component="props.preview || props.render"
+    :component="props.preview || props.render || props.demonstrate"
     :element="props.element"
   >
     <template #controller>
@@ -12,7 +12,7 @@
     <template #component>
       <el-switch
         v-model="getValue"
-        :disabled="props.preview ? true : false"
+        :disabled="props.disabled || props.demonstrate || props.preview"
         @change="updateValue(getValue)"
       />
     </template>

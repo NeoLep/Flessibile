@@ -21,7 +21,8 @@ const defaultSettingsSchema = [
     type: "input-controller",
     label: "参数",
     props: "props",
-    span: 24
+    span: 24,
+    required: true
   },
   {
     type: "switch-controller",

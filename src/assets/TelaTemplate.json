@@ -1,25 +1,111 @@
 [
-  {
-    "id": 1,
-    "templateName": "基础模版",
-    "createTime": "2021-03-10 14:51:30",
-    "templateList": [
-      {
-        "timeStamp": 1646724821450,
-        "type": "input-controller",
-        "label": "姓名",
-        "span": 12,
-        "required": true,
-        "props": "name"
-      },
-      {
-        "timeStamp": 1646724823233,
-        "type": "input-controller",
-        "label": "性别",
-        "span": 12,
-        "required": true,
-        "props": "sex"
-      }
-    ]
-  }
+	{
+		"id": 1,
+		"templateName": "基础模版NoMake",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1647336677043,
+				"type": "switch-controller",
+				"label": "是否确认",
+				"span": 12,
+				"required": true,
+				"props": "confirmed"
+			},
+			{
+				"timeStamp": 1647336698810,
+				"type": "switch-controller",
+				"label": "默认开关",
+				"span": 12,
+				"required": false,
+				"props": "defaultSwitch"
+			},
+			{
+				"timeStamp": 1647336709077,
+				"type": "textarea-controller",
+				"label": "多行",
+				"span": 24,
+				"required": false,
+				"props": "multi"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"templateName": "基础模版2",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"templateName": "基础模版3",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	}
 ]

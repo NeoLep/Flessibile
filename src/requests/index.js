@@ -8,7 +8,7 @@ export function $request(request) {
     axios({
       method: request.method || "GET",
       url: request.url,
-      params: request.params
+      data: request.params
     }).then(res => {
       if (res && res.status === 200) resolve(res.data);
       else reject(res);

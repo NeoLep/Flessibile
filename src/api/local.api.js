@@ -6,11 +6,15 @@ export const LocalApiList = {
     method: "GET"
   },
   saveToLocal: {
-    url: "saveToLocal",
-    method: "GET"
+    url: "saveTelaTemplate",
+    method: "POST"
   },
   getTelaList: {
     url: "getTelaTemplateList",
     method: "GET"
+  },
+  deleteTela: {
+    url: "deleteTelaTemplate",
+    method: "DELETE"
   }
 };

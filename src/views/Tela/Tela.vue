@@ -21,7 +21,12 @@
             active-text="render"
             inactive-text="preview"
           />
-          <el-button type="primary" size="small">保存</el-button>
+          <el-button
+            @click="requestEvents.saveTela()"
+            type="primary"
+            size="small"
+            >保存</el-button
+          >
         </div>
       </div>
     </template>
@@ -61,6 +66,12 @@
       />
       <div class="switch">
         <el-button
+          @click="dialogEvents.showDialog()"
+          class="button"
+          :icon="Setting"
+          circle
+        ></el-button>
+        <el-button
           @click="showCode = !showCode"
           class="button"
           :icon="Switch"
@@ -69,6 +80,29 @@
       </div>
     </div>
   </containerComponent>
+
+  <div class="tela-dialog">
+    <el-dialog
+      v-model="dialogEvents.settingsDialogVis.value"
+      title="模版配置"
+      width="750px"
+    >
+      <!-- {{ telaConfigure }} -->
+      <ControllerRenders
+        type="render"
+        :forms="telaConfigure"
+        :renderList="telaConfigureSchema"
+      />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogEvents.closeDialog(false)">取消</el-button>
+          <el-button type="primary" @click="dialogEvents.closeDialog(true)"
+            >确认</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
@@ -78,10 +112,11 @@ import ControllerRenders from "../../components/controllComponent/controllerRend
 import controllerConfigure from "../../components/controllComponent/controllerConfigure.vue";
 
 import { saveTemplateToLocal } from "./Tela.service";
+import { telaConfigureSchema } from "./Tela.configure";
 
 import { computed, reactive, ref, render, getCurrentInstance } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { Switch, ArrowLeftBold } from "@element-plus/icons-vue";
+import { Switch, ArrowLeftBold, Setting } from "@element-plus/icons-vue";
 import {
   configureSchema,
   returnDefaultSet
@@ -89,6 +124,10 @@ import {
 
 // vue 实例
 let proxy;
+
+// 模版配置实例
+let telaConfigure = ref({});
+let telaConfigureClone = null;
 
 // 渲染模式 true: render - false: preview
 const render_type_status = ref(false);
@@ -181,14 +220,37 @@ const elementEvents = {
   }
 };
 
-// 请求集合
+// AXIOS 请求集合
 const requestEvents = {
-  async save_template_to_local(params) {
+  async saveTela() {
+    telaConfigure.value.templateList = renderList;
+    const params = telaConfigure.value;
+
     let result = await saveTemplateToLocal(params);
     if (result) {
       console.log(result);
       return result;
     }
+  }
+};
+
+// dialog 弹出框事件
+const dialogEvents = {
+  settingsDialogVis: ref(false),
+  showDialog() {
+    console.log("?");
+    // 存储备份数据
+    telaConfigureClone = JSON.parse(JSON.stringify(telaConfigure.value));
+    this.settingsDialogVis.value = true;
+  },
+  closeDialog(type) {
+    if (!type) {
+      // 点击取消还原数据
+      telaConfigure.value = JSON.parse(JSON.stringify(telaConfigureClone));
+    }
+    // 清除还原数据
+    telaConfigureClone = null;
+    this.settingsDialogVis.value = false;
   }
 };
 
@@ -198,9 +260,6 @@ let route;
 const returnToHome = () => {
   router.go(-1);
 };
-
-// store 处理逻辑
-const storeEvents = {};
 
 export default {
   components: {
@@ -218,23 +277,34 @@ export default {
     proxy = getCurrentInstance().proxy;
 
     console.log("renderList.value", renderList.value);
-    if (route.query.edit)
+    // 如果存在 edit 就从 store 中获取数据
+    if (route.query.edit) {
       renderList.push(...proxy.$store.getState("viewTelaDetail").templateList);
+      telaConfigure.value = JSON.parse(
+        JSON.stringify(proxy.$store.getState("viewTelaDetail"))
+      );
+    }
+
     // 获取传递过来的详情
 
     // requestEvents.save_template_to_local();
     return {
-      controll_component_ref,
-      renderList,
-      renderType,
-      render_type_status,
-      Switch,
-      ArrowLeftBold,
-      showCode,
+      controll_component_ref, // 中心拖拽表单的实例
+      telaConfigure, // 模版详细配置 - 最后返回的结果
+      renderList, // 模版列表实例
+      renderType, // 渲染类型 - render/preview
+      render_type_status, // 渲染类型的判断变量 控制 renderType
+      Switch, // Icon
+      ArrowLeftBold, // Icon
+      Setting, // Icon
+      showCode, // 查看源代码的变量
+      telaConfigureSchema, // 获取的特殊配置文件
       getForms, // 获取的数据
       elementEvents, // 元素事件集合
       draggableEvents, // 拖拽事件集合
       configureEvents, // 配置事件集合
+      dialogEvents, // 弹出框事件集合
+      requestEvents, // axios 请求集合
       returnToHome // 发挥逻辑事件
     };
   }
@@ -302,12 +372,12 @@ export default {
 }
 .switch {
   position: absolute;
-  width: 20px;
+  width: 60px;
   height: 20px;
   top: 10px;
   right: 10px;
   .button {
-    width: 100%;
+    width: 20px;
     height: 100%;
   }
 }
@@ -325,6 +395,14 @@ export default {
   transition: all ease-in 0.3s;
   &:hover {
     color: #579ef8;
+  }
+}
+</style>
+
+<style lang="scss">
+.tela-dialog {
+  .el-dialog__body {
+    padding: 0;
   }
 }
 </style>

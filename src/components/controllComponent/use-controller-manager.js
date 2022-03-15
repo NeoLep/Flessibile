@@ -3,6 +3,8 @@ export function setControllerProps() {
     controller: Boolean,
     preview: Boolean,
     render: Boolean,
+    demonstrate: Boolean,
+    disabled: Boolean,
     element: {
       type: Object,
       default: () => ({})

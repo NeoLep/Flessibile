@@ -1,7 +1,7 @@
 <template>
   <controllerContainer
     :controller="props.controller"
-    :component="props.preview || props.render"
+    :component="props.preview || props.render || props.demonstrate"
     :element="props.element || {}"
   >
     <template #controller>
@@ -15,7 +15,7 @@
         placeholder="请输入内容"
         :rows="4"
         type="textarea"
-        :disabled="props.preview ? true : false"
+        :disabled="props.disabled || props.demonstrate || props.preview"
         @blur="updateValue('blur', getValue)"
         @input="updateValue('input', getValue)"
         @change="updateValue('change', getValue)"

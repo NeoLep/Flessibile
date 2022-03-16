@@ -1,6 +1,17 @@
 <template>
   <div class="operation">
-    <el-button @click="operationEvents.submit()" type="primary">提交</el-button>
+    <el-button
+      v-if="!operationEvents.submitted"
+      @click="operationEvents.submit()"
+      type="primary"
+      >提交</el-button
+    >
+    <el-button
+      v-else-if="operationEvents.submitted"
+      @click="operationEvents.submitted = false"
+      type="primary"
+      >取消锁定</el-button
+    >
     <el-button @click="operationEvents.reset()">重置</el-button>
   </div>
   <div class="container">

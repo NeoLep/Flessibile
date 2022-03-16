@@ -5,12 +5,12 @@
 		"createTime": "2021-03-10 14:51:30",
 		"templateList": [
 			{
-				"timeStamp": 1646724821450,
-				"type": "input-controller",
-				"label": "姓名",
+				"timeStamp": 1647336698810,
+				"type": "switch-controller",
+				"label": "默认开关",
 				"span": 12,
-				"required": true,
-				"props": "name"
+				"required": false,
+				"props": "defaultSwitch"
 			},
 			{
 				"timeStamp": 1646724823233,
@@ -29,12 +29,12 @@
 				"props": "confirmed"
 			},
 			{
-				"timeStamp": 1647336698810,
-				"type": "switch-controller",
-				"label": "默认开关",
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
 				"span": 12,
-				"required": false,
-				"props": "defaultSwitch"
+				"required": true,
+				"props": "name"
 			},
 			{
 				"timeStamp": 1647336709077,
@@ -43,6 +43,76 @@
 				"span": 24,
 				"required": false,
 				"props": "multi"
+			},
+			{
+				"timeStamp": 1647338061952,
+				"type": "select-controller",
+				"label": "sekect",
+				"span": 12,
+				"required": false,
+				"options": [
+					{
+						"label": "12",
+						"value": "23",
+						"createTime": 1647338069751
+					}
+				],
+				"props": "sef"
+			},
+			{
+				"timeStamp": 1647336698810,
+				"type": "switch-controller",
+				"label": "默认开关",
+				"span": 12,
+				"required": false,
+				"props": "defaultSwitch"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1647336677043,
+				"type": "switch-controller",
+				"label": "是否确认",
+				"span": 12,
+				"required": true,
+				"props": "confirmed"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1647336709077,
+				"type": "textarea-controller",
+				"label": "多行",
+				"span": 24,
+				"required": false,
+				"props": "multi"
+			},
+			{
+				"timeStamp": 1647338061952,
+				"type": "select-controller",
+				"label": "sekect",
+				"span": 12,
+				"required": false,
+				"options": [
+					{
+						"label": "12",
+						"value": "23",
+						"createTime": 1647338069751
+					}
+				],
+				"props": "sef"
 			}
 		]
 	},
@@ -72,6 +142,240 @@
 	{
 		"id": 3,
 		"templateName": "基础模版3",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"templateName": "基础模版4",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 5,
+		"templateName": "基础模版5",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 6,
+		"templateName": "基础模版6",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 7,
+		"templateName": "基础模版7",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 8,
+		"templateName": "基础模版8",
+		"createTime": "2021-03-10 14:51:30",
+		"templateList": [
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			},
+			{
+				"timeStamp": 1646724821450,
+				"type": "input-controller",
+				"label": "姓名",
+				"span": 12,
+				"required": true,
+				"props": "name"
+			},
+			{
+				"timeStamp": 1646724823233,
+				"type": "input-controller",
+				"label": "性别",
+				"span": 12,
+				"required": true,
+				"props": "sex"
+			}
+		]
+	},
+	{
+		"id": 9,
+		"templateName": "基础模版9",
 		"createTime": "2021-03-10 14:51:30",
 		"templateList": [
 			{

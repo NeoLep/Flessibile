@@ -4,7 +4,7 @@
     <br />
     <tableComponent
       class="table"
-      :forms="TelaTemplateJSON"
+      :data="TelaTemplateJSON"
       :options="tableOptions"
     >
       <template #operator="scope">
@@ -100,8 +100,9 @@ export default {
   box-sizing: border-box;
 }
 .table {
+  height: 70vh;
   box-sizing: border-box;
-  padding: 15px;
+  // padding: 15px;
   background-color: #fff;
 }
 </style>

@@ -116,7 +116,10 @@ import { telaConfigureSchema } from "./Tela.configure";
 
 import { computed, reactive, ref, render, getCurrentInstance } from "vue";
 import { useRouter, useRoute } from "vue-router";
+
 import { Switch, ArrowLeftBold, Setting } from "@element-plus/icons-vue";
+import { ElNotification } from "element-plus";
+
 import {
   configureSchema,
   returnDefaultSet
@@ -228,7 +231,13 @@ const requestEvents = {
 
     let result = await saveTemplateToLocal(params);
     if (result) {
-      console.log(result);
+      ElNotification({
+        title: "写入完成",
+        message: result.operation + "," + result.log,
+        type: "success",
+        duration: 1500,
+        onClose: () => returnToHome()
+      });
       return result;
     }
   }

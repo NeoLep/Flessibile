@@ -4,7 +4,7 @@
     <el-table
       :height="tableEvents.height.value"
       class="table"
-      :data="props.data"
+      :data="tableEvents.renderData.value"
       border
     >
       <el-table-column
@@ -36,21 +36,22 @@
     </el-table>
     <el-pagination
       class="pagination"
-      v-model:currentPage="paginationEvents.currentPage.value"
-      v-model:page-size="paginationEvents.pageSize.value"
-      @size-change="paginationEvents.handleSizeChange"
-      @current-change="paginationEvents.handleCurrentChange"
-      :page-sizes="[1, 20, 30, 40]"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :currentPage="paginationEvents.currentPage.value"
+      :page-size="paginationEvents.pageSize.value"
+      @size-change="e => paginationEvents.handleSizeChange(e)"
+      @current-change="e => paginationEvents.handleCurrentChange(e)"
+      :page-sizes="[1, 10, 20, 30, 40]"
+      layout="total, sizes, jumper, prev, pager, next"
+      :total="paginationEvents.total.value"
     />
-    <!--  -->
   </div>
 </template>
 
 <script>
 import { renderControllers } from "./use-table-component-manager";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+
+let getProps;
 
 const getComponentList = new renderControllers();
 
@@ -62,18 +63,39 @@ const defaultTableSchema = [
 const paginationEvents = {
   currentPage: ref(1), // 当前页
   pageSize: ref(10), // size
+  total: ref(0),
   handleCurrentChange(e) {
-    console.log("changePage", e);
+    this.currentPage.value = e;
+    this.reRenderTable();
   },
   handleSizeChange(e) {
-    console.log("changePageSize", e);
+    this.pageSize.value = e;
+    this.reRenderTable();
+  },
+  setRenderType(local) {
+    if (local) {
+      this.total.value = getProps.data.length;
+      this.reRenderTable();
+    } else console.log("online type");
+  },
+  reRenderTable() {
+    // handleSizeChange
+    const pageSize = this.pageSize.value;
+    const pageNumber = this.currentPage.value;
+    tableEvents.renderData.value = getProps.data.slice(
+      (pageNumber - 1) * pageSize,
+      (pageNumber - 1) * pageSize + pageSize
+    );
+    console.log(tableEvents.renderData.value);
   }
 };
 
 // table 组件实例
 const tableComponentRef = ref(null);
+
 // table 事件集合
 const tableEvents = {
+  renderData: ref([]),
   height: ref(null),
   setTableHeight() {
     this.height.value = tableComponentRef.value.offsetHeight - 70;
@@ -86,6 +108,10 @@ export default {
       type: Array,
       default: () => []
     },
+    local: {
+      type: Boolean,
+      default: false
+    },
     data: null,
     settings: null
   },
@@ -93,9 +119,21 @@ export default {
     ...getComponentList
   },
   setup(props) {
+    getProps = props;
+    paginationEvents.setRenderType(props.local);
     onMounted(() => {
       tableEvents.setTableHeight(); // 设置table 自适应高度
     });
+
+    // 监听 props.data
+    watch(
+      () => props.data,
+      () => paginationEvents.reRenderTable(),
+      {
+        immediate: true, // 这个属性是重点啦
+        deep: true // 深度监听的参数
+      }
+    );
     return {
       props,
       defaultTableSchema,

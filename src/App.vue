@@ -1,6 +1,6 @@
 <template>
-  <containerComponent header hideContext class="container_component">
-    <template #header>
+  <containerComponent hideContext class="container_component">
+    <!-- <template #header>
       <div class="header">
         <div style="margin: 0 15px; float: left;">
           <el-button
@@ -14,10 +14,10 @@
         </div>
         flessibile
       </div>
-    </template>
+    </template> -->
     <template #left>
       <div class="left">
-        <LayoutComponent />
+        <MenuComponent />
       </div>
     </template>
     <div class="body">
@@ -28,7 +28,7 @@
 
 <script setup>
 import containerComponent from "./components/container-component/container-component.vue";
-import LayoutComponent from "./views/layout/layout.vue";
+import MenuComponent from "./views/menu/menu.vue";
 import { ArrowLeftBold } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 

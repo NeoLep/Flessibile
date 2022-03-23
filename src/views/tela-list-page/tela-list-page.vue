@@ -1,11 +1,11 @@
 <template>
   <div class="tela-list">
     <searchComponent :renders="searchRenders" />
-    <br />
     <tableComponent
       class="table"
       :data="TelaTemplateJSON"
       :options="tableOptions"
+      local
     >
       <template #operator="scope">
         <el-button
@@ -19,12 +19,17 @@
           type="text"
           >编辑</el-button
         >
-        <el-button
-          @click="detailEvents.detail(scope.row, 'delete')"
-          style="color: red"
-          type="text"
-          >删除</el-button
+        <el-popconfirm
+          icon-color="red"
+          title="确定要删除此条模版吗?"
+          confirm-button-text="是"
+          cancel-button-text="否"
+          @confirm="detailEvents.detail(scope.row, 'delete')"
         >
+          <template #reference>
+            <el-button style="color: red" type="text">删除</el-button>
+          </template>
+        </el-popconfirm>
       </template>
     </tableComponent>
   </div>
@@ -57,21 +62,25 @@ const requestEvents = {
 const detailEvents = {
   // 编辑还是阅览
   async detail(detail, type) {
-    proxy.$store.updateState("viewTelaDetail", detail);
-    if (type === "preview") router.push("telarender");
-    else if (type === "edit")
+    console.log(detail, type);
+    if (type === "preview") {
+      router.push("telarender");
+    } else if (type === "edit") {
+      proxy.$store.updateState("viewTelaDetail", detail);
       router.push({
         path: "tela",
         query: {
           edit: true
         }
       });
-    else if (type === "delete") {
+    } else if (type === "delete") {
       const params = {
         id: detail.id
       };
       let result = await deleteTelaListService(params);
-      if (result) console.log(result);
+      if (result) {
+        console.log(result);
+      }
     }
   }
 };
@@ -100,6 +109,7 @@ export default {
   box-sizing: border-box;
 }
 .table {
+  margin-top: 20px;
   height: 70vh;
   box-sizing: border-box;
   // padding: 15px;

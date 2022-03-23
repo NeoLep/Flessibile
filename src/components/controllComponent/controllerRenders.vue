@@ -216,14 +216,15 @@ export default {
   box-sizing: border-box;
   min-height: 100%;
   background-color: #fff;
+  overflow: auto;
   .dragArea {
     // border: 1px solid red;
-    // height: 100%;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
-    padding-top: 15px;
-    box-sizing: border-box;
+    padding: 15px 15px 150px;
+    // box-sizing: border-box;
     .focus_element {
       position: relative;
       z-index: 200;
